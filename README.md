@@ -5,3 +5,7 @@
 3.Android RecyclerView<br>
 4.Android MVP Pattern<br>
 
+# How to convert java code to Kotlin 
+Please check video <br>
+https://www.youtube.com/watch?v=zuH9FGwIw5E
+
