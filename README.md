@@ -4,6 +4,7 @@
 2.Android ListView<br>
 3.Android RecyclerView<br>
 4.Android MVP Pattern<br>
+5.Android JobScheduler
 
 # How to convert java code to Kotlin 
 Please check video <br>
