@@ -7,7 +7,7 @@ import android.widget.Toast
 /**
  * Created by Siddhant on 19/03/18.
  */
-public class JobExecuter(context:Context) : AsyncTask<Any, Any, String>()
+public class BackgroundTask(context:Context) : AsyncTask<Any, Any, String>()
 {
     var context=context
     override fun doInBackground(vararg p0: Any?): String {

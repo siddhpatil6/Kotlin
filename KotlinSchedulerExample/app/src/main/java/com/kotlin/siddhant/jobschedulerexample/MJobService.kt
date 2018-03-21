@@ -2,9 +2,6 @@ package com.kotlin.siddhant.jobschedulerexample
 
 import android.app.job.JobParameters
 import android.app.job.JobService
-import android.widget.Toast
-import android.widget.TextView
-
 
 
 /**
@@ -12,20 +9,20 @@ import android.widget.TextView
  */
 public open class MJobService: JobService()
 {
-    var mJobExecuter:JobExecuter?=null
+    var mBackgroundTask:BackgroundTask?=null
     override fun onStopJob(p0: JobParameters?): Boolean {
 
         // it cancels job
-        mJobExecuter?.cancel(true)
+        mBackgroundTask?.cancel(true)
         return false
     }
 
 
 
     override fun onStartJob(p0: JobParameters?): Boolean {
-        mJobExecuter= JobExecuter(applicationContext)
+        mBackgroundTask= BackgroundTask(applicationContext)
 
-        mJobExecuter?.execute()
+        mBackgroundTask?.execute()
         jobFinished(p0,false)
         return true
     }
