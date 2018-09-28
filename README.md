@@ -110,9 +110,5 @@ fun demo(x: Any) {
         print(x.length) // x is automatically cast to String
     }
 }
-fun demo(x: Any) {
-    if (x is String) {
-        print(x.length) // x is automatically cast to String
-    }
-}
+
 ```
