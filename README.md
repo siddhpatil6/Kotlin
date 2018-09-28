@@ -29,12 +29,13 @@ init is the intialiser block in Kotlin. It’s executed once the constructor is 
 ### What are the features you think are there in Kotlin but not in Java ?
 Kotlin has quite a number of features that Java doesn’t. To name some of them, they are
 
-Extension Functions
-Null Safety
-Smart casts
-Range expressions
-Operator Overloading
-Data classes
-Companion Objects
-Coroutines
-etc.
+1. Extension Functions
+2. Null Safety
+3. Smart casts
+4. Range expressions
+5. Operator Overloading
+6. Data classes
+7. Companion Objects
+8. Coroutines
+
+
