@@ -13,6 +13,13 @@ https://www.youtube.com/watch?v=zuH9FGwIw5E
 Add Suggestions in issues of which demo you want 
 
 
-# Kotlin Interview Questions 
-
-
+# Kotlin Interview Questions  <br>
+ <br>
+### Explain Kotlin’s Null safety? <br>
+In Kotlin, the Null safety is used to eliminate the risk of countering the NullPointer exception in real time. <br>
+ <br>
+### Which type of Programming does Kotlin support? <br>
+ <br>
+Kotlin supports only two types of programming, and they are: <br>
+Procedural programming <br>
+Object-oriented programming <br>
