@@ -117,6 +117,7 @@ fun demo(x: Any) {
 <br>
 ### Apply
 
+```
 // old way of building an object
 
 val andre = Person()
@@ -129,5 +130,5 @@ val andre = Person().apply {
     company = "Viacom"
     hobby = "losing in ping pong"
 }
-
+```
 <br>
