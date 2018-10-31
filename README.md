@@ -18,15 +18,15 @@ Add Suggestions in issues of which demo you want
 ### Explain Kotlin’s Null safety? 
 In Kotlin, the Null safety is used to eliminate the risk of countering the NullPointer exception in real time. <br>
 
-### Which type of Programming does Kotlin support? 
+## Which type of Programming does Kotlin support? 
 Kotlin supports only two types of programming, and they are: <br>
 Procedural programming <br>
 Object-oriented programming <br>
 
-### What’s init block in Kotlin
+## What’s init block in Kotlin
 init is the intialiser block in Kotlin. It’s executed once the constructor is instantiated.
 
-### What are the features you think are there in Kotlin but not in Java ?
+## What are the features you think are there in Kotlin but not in Java ?
 Kotlin has quite a number of features that Java doesn’t. To name some of them, they are
 
 1. Extension Functions
