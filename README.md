@@ -37,9 +37,9 @@ Kotlin has quite a number of features that Java doesn’t. To name some of them,
 6. Data classes
 7. Companion Objects
 8. Coroutines
+9. scoping functions
 
-
-### 1. Extension Functions
+## 1. Extension Functions
 
 ```
 public class Calculator
@@ -61,7 +61,7 @@ fun main(args: Array<String>) {
     calc.multiply(4,5)
 }
 ```
-### 2. Null Safety & Safe Calls (?.)
+## 2. Null Safety & Safe Calls (?.)
 
 Another way of using a nullable property is safe call operator ?.
 This calls the method if the property is not null or returns null if that property is null without throwing an NPE (null pointer exception).
@@ -101,7 +101,7 @@ This operator is used to explicitly tell the compiler that the property is not n
 
 nullableVariable!!.someMethodCall()
 
-### Smart Casts
+## Smart Casts
 In many cases, one does not need to use explicit cast operators in Kotlin, because the compiler tracks the is-checks and explicit casts for immutable values and inserts (safe) casts automatically when needed:
 
 ```
@@ -112,3 +112,22 @@ fun demo(x: Any) {
 }
 
 ```
+## Scoping functions
+<br>
+<br>
+### Apply
+
+// old way of building an object
+
+val andre = Person()
+andre.name = "andre"
+andre.company = "Viacom"
+andre.hobby = "losing in ping pong"
+// after applying 'apply' (pun very much intended)
+val andre = Person().apply {
+    name = "Andre"
+    company = "Viacom"
+    hobby = "losing in ping pong"
+}
+
+<br>
