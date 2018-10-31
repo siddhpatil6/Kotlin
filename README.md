@@ -114,8 +114,8 @@ fun demo(x: Any) {
 ```
 ## Scoping functions
 <br>
-<br>
-### Apply
+
+###  Apply
 
 ```
 // old way of building an object
