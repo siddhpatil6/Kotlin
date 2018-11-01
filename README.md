@@ -170,6 +170,6 @@ clas Person
 <br>
 With and Apply both works as same but in case of apply it returns receiver. <br>
 Recievier in this case is <b> person </b> <- person.apply <br>
-Appart from that <b> apply </b> have right to call functions of class <br>
+Appart from that, <b> apply </b> have right to call functions of class <b>Person<b> <br>
 
 
