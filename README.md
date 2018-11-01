@@ -132,3 +132,44 @@ val andre = Person().apply {
 }
 ```
 <br>
+
+# Difference Between Functions
+
+## With vs Apply
+```
+fun main(args:Array<String>)
+{
+	var person=Person()
+	with(person)
+	{
+		name="shriyank"
+		age=23
+	}
+	
+	person.apply
+	{
+	   name="Siddhant"
+	   age=27
+	}.startFunction()
+	
+	println(person.name)
+	println(person.age)
+}
+clas Person
+{
+	var name:String?=null
+	var age:Int?=null
+	
+	fun startFunction()
+	{
+		println("This functions is started")
+	}
+}
+
+```
+<br>
+With and Apply both works as same but in case of apply it returns receiver. <br>
+Recievier in this case is <b> person </b> <- person.apply <br>
+Appart from that <b> apply </b> have right to call functions of class <br>
+
+
