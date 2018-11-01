@@ -168,8 +168,8 @@ clas Person
 
 ```
 <br>
-<b>With</b> and <b> Apply </b> both works as same but in case of <b> apply </b> it returns receiver. <br>
-Recievier in this case is <b> person </b> <- person.apply <br>
-Appart from that, <b> apply </b> have right to call functions of class <b>Person<b> <br>
+<b>With</b> and <b> Apply </b> both works as same but in case of <b> apply </b> it returns <b>receiver</b>. <br>
+Reciever in this case is <b> person </b> <- person.apply <br>
+Apart from that, <b> apply </b> have right to call functions of class <b>Person<b> <br>
 
 
