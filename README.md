@@ -41,6 +41,7 @@ Kotlin has quite a number of features that Java doesn’t. To name some of them,
 
 ## 1. Extension Functions
 
+
 ```
 public class Calculator
 {
@@ -171,5 +172,8 @@ clas Person
 <b>With</b> and <b> Apply </b> both works as same but in case of <b> apply </b> it returns <b>receiver</b>. <br>
 Reciever in this case is <b> person </b> <- person.apply <br>
 Apart from that, <b> apply </b> have right to call functions of class <b>Person<b> <br>
+
+# What is extensions in view binding ?
+https://antonioleiva.com/kotlin-android-extensions/
 
 
