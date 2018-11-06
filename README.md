@@ -176,4 +176,4 @@ Apart from that, <b> apply </b> have right to call functions of class <b>Person<
 # What is extensions in view binding ?
 https://antonioleiva.com/kotlin-android-extensions/
 
-
+# How to use parceable in kotlin?
