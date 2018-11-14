@@ -177,3 +177,6 @@ Apart from that, <b> apply </b> have right to call functions of class <b>Person<
 https://antonioleiva.com/kotlin-android-extensions/
 
 # How to use parceable in kotlin?
+
+
+# Difference between == and === in kotlin?
