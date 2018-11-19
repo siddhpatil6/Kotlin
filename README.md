@@ -323,18 +323,16 @@ equals(other: Any?) method is implemented in Any class and can be overridden in 
 
 The difference between == and .equals is in case of Float and Double comparison, .equals disagrees with the IEEE 754 Standard for Floating-Point Arithmetic.
 
-And what does disagree with IEEE 754 Standard for Floating-Point Arithmetic mean?
+### And what does disagree with IEEE 754 Standard for Floating-Point Arithmetic mean?
 
 It means,
+1. NaN is considered equal to itself
+2. NaN is considered greater than any other element including POSITIVE_INFINITY
+3. -0.0 is considered less than 0.0
 
-NaN is considered equal to itself
-NaN is considered greater than any other element including POSITIVE_INFINITY
--0.0 is considered less than 0.0
-
-Confused?
+### Confused?
 
 Will explain this and everything with examples.
-
 First, let’s compare two primitive type Int variables by all the equal checks.
 
 ```
@@ -345,9 +343,10 @@ First, let’s compare two primitive type Int variables by all the equal checks.
     println(int1.equals(int2))   // true
     println(int1 === int2)       // true
 ```
-All the will print true because primitive datatype only checks the value in case of === also which will be equal in our case.
 
+All the will print true because primitive datatype only checks the value in case of === also which will be equal in our case.
 Now let’s use the wrapper class instead of Primitive datatype and compare all three equal checks
+
 ```
     val first = Integer(10)
     val second = Integer(10)
@@ -356,8 +355,7 @@ Now let’s use the wrapper class instead of Primitive datatype and compare all 
     println(first.equals(second))  //true
     println(first === second)      //false
 ```
-    
-    
+
 In the above case, the == and .equals prints true because they compare only values whereas === compares the references of the objects which were different so it prints false.
 
 Now, let’s consider another case where we created our own custom class object and compared with all three checks.
@@ -379,7 +377,6 @@ class Employee (val name: String)
  
 The reason for the above comparison is obvious, As Empoyee is not a primitive datatype or wrapper class, all three compared the references, which returns false for all three checks. But in the case of string comparison, if only checks the contents of the string which were equal so it returns true for every case.
 
-
 Wait, but you said == and .equals only compares the contents of the object which were equal in our case.
 
 Exactly. But the content comparison only works if its a data class. If it’s a normal class the compiler consider both the objects as the different objects even if the content is same but if its a data class, the compiler compares the data and return true if the content is same.
@@ -399,6 +396,7 @@ Let’s change the above class to data class.
     println(emp1.name.equals(emp2.name)) //true
     println(emp1.name === emp2.name)     //true
 ```    
+
 Last thing, Let’s compare the float values with a negative zero and positive zero.
 
 ```
@@ -411,7 +409,6 @@ Last thing, Let’s compare the float values with a negative zero and positive z
 ```
 
 As in the case of Float and Double comparison, .equals disagrees with the IEEE 754 Standard for Floating-Point Arithmetic, it returns a false when -0.0 was compared with 0.0 whereas == and === returns true.
-
 
 Few things to keep in mind,
 
