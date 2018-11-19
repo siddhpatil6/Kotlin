@@ -174,7 +174,6 @@ Reciever in this case is <b> person </b> <- person.apply <br>
 Apart from that, <b> apply </b> have right to call functions of class <b>Person<b> <br>
 
 # What is extensions in view binding ?
-https://antonioleiva.com/kotlin-android-extensions/
 
 The magic behind Kotlin Android Extensions <br>
 
