@@ -171,11 +171,11 @@ clas Person
 <br>
 <b>With</b> and <b> Apply </b> both works as same but in case of <b> apply </b> it returns <b>receiver</b>. <br>
 Reciever in this case is <b> person </b> <- person.apply <br>
-Apart from that, <b> apply </b> have right to call functions of class <b>Person<b> <br>
+Apart from that, <b> apply </b> have right to call functions of class <b>Person</b> <br>
 
 # What is extensions in view binding ?
 
-The magic behind Kotlin Android Extensions <br>
+### The magic behind Kotlin Android Extensions <br>
 
 When you start working with Kotlin, it’s really interesting to understand the bytecode that is being generated when you use one feature or another. This will help you understand the hidden costs behind your decisions.
 
@@ -212,7 +212,6 @@ public void _$_clearFindViewByIdCache() {
    }
 
 }
-
 ```
 Here it is the view cache we were talking about.
 
