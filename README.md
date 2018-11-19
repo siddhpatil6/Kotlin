@@ -176,7 +176,7 @@ Apart from that, <b> apply </b> have right to call functions of class <b>Person<
 # What is extensions in view binding ?
 https://antonioleiva.com/kotlin-android-extensions/
 
-### The magic behind Kotlin Android Extensions <br>
+The magic behind Kotlin Android Extensions <br>
 
 When you start working with Kotlin, it’s really interesting to understand the bytecode that is being generated when you use one feature or another. This will help you understand the hidden costs behind your decisions.
 
