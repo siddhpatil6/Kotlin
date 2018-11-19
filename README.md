@@ -304,3 +304,117 @@ val model: Model = intent.getParcelableExtra(EXTRA)
 ```
 
 # Difference between == and === in kotlin?
+
+Equality in Kotlin (‘==’, ‘===’ and ‘.equals’)
+We often need to compare the data of two variables or objects or the references of two objects in Kotlin. This brings in another question, which equality check should we use in which case.
+
+Let’s figure out what are the types of checks available in Kotlin.
+
+
+### Structural Equality (‘==’)
+== operator is used to compare the data of two variables.
+Please don’t misunderstand this equality operator with the Java == operator as both are different. == operator in Kotlin only compares the data or variables, whereas in Java or other languages == is generally used to compare the references. The negated counterpart of == in Kotlin is != which is used to compare if both the values are not equal to each other.
+
+### Referential equality (‘===’)
+=== operator is used to compare the reference of two variable or object. It will only be true if both the objects or variables pointing to the same object. The negated counterpart of === in Kotlin is !== which is used to compare if both the values are not equal to each other. For values which are represented as primitive types at runtime (for example, Int), the === equality check is equivalent to the == check.
+
+### .equals method
+equals(other: Any?) method is implemented in Any class and can be overridden in any extending class. .equals method also compares the content of the variables or objects just like == operator but it behaves differently in case of Float and Double comparison.
+
+The difference between == and .equals is in case of Float and Double comparison, .equals disagrees with the IEEE 754 Standard for Floating-Point Arithmetic.
+
+And what does disagree with IEEE 754 Standard for Floating-Point Arithmetic mean?
+
+It means,
+
+NaN is considered equal to itself
+NaN is considered greater than any other element including POSITIVE_INFINITY
+-0.0 is considered less than 0.0
+
+Confused?
+
+Will explain this and everything with examples.
+
+First, let’s compare two primitive type Int variables by all the equal checks.
+
+```
+    val int1 = 10
+    val int2 = 10
+    
+    println(int1 == int2)        // true
+    println(int1.equals(int2))   // true
+    println(int1 === int2)       // true
+```
+All the will print true because primitive datatype only checks the value in case of === also which will be equal in our case.
+
+Now let’s use the wrapper class instead of Primitive datatype and compare all three equal checks
+```
+    val first = Integer(10)
+    val second = Integer(10)
+    
+    println(first == second)       //true
+    println(first.equals(second))  //true
+    println(first === second)      //false
+```
+    
+    
+In the above case, the == and .equals prints true because they compare only values whereas === compares the references of the objects which were different so it prints false.
+
+Now, let’s consider another case where we created our own custom class object and compared with all three checks.
+
+```
+class Employee (val name: String)
+ val emp1 = Employee(“Suneet”)
+ val emp2 = Employee(“Suneet”)
+ 
+ println(emp1 == emp2)      //false
+ println(emp1.equals(emp2)) //false
+ println(emp1 === emp2)     //false
+ 
+ println(emp1.name == emp2.name)       //true
+ println(emp1.name.equals(emp2.name))  //true
+ println(emp1.name === emp2.name)      //true
+ 
+ ```
+ 
+The reason for the above comparison is obvious, As Empoyee is not a primitive datatype or wrapper class, all three compared the references, which returns false for all three checks. But in the case of string comparison, if only checks the contents of the string which were equal so it returns true for every case.
+
+
+Wait, but you said == and .equals only compares the contents of the object which were equal in our case.
+
+Exactly. But the content comparison only works if its a data class. If it’s a normal class the compiler consider both the objects as the different objects even if the content is same but if its a data class, the compiler compares the data and return true if the content is same.
+
+Let’s change the above class to data class.
+
+```
+    data class Employee (val name: String)
+    val emp1 = Employee("Suneet")
+    val emp2 = Employee("Suneet")
+    
+    println(emp1 == emp2)         //true
+    println(emp1.equals(emp2))    //true
+    println(emp1 === emp2)        //false
+    
+    println(emp1.name == emp2.name)      //true
+    println(emp1.name.equals(emp2.name)) //true
+    println(emp1.name === emp2.name)     //true
+```    
+Last thing, Let’s compare the float values with a negative zero and positive zero.
+
+```
+ val negZero = -0.0f
+ val posZero = 0.0f
+ 
+ println(negZero == posZero)         //true
+ println(negZero.equals(posZero))    //false
+ println(negZero === posZero)        //true
+```
+
+As in the case of Float and Double comparison, .equals disagrees with the IEEE 754 Standard for Floating-Point Arithmetic, it returns a false when -0.0 was compared with 0.0 whereas == and === returns true.
+
+
+Few things to keep in mind,
+
+As there is no constructor as String(“”) in Kotlin, all string comparison will give true if the content will be equal.
+There’s no point in optimizing code when comparing to null explicitly. a == null will be automatically translated to a === null as null is a reference and at the end, it will a reference check.
+That’s all for now. You can read my other interesting posts here or you can enjoy my games or apps listed here. Feel free to use my open source Android components in your app listed here. Or drop an email, if you didn’t find what you are looking for and need some help.
