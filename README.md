@@ -277,6 +277,30 @@ When the view is destroyed, this method will call clearFindViewByIdCache, so we 
 
 
 # How to use parceable in kotlin?
+### Kotlin Android Extension to implement Parcelable
 
+With the new @Parcelize annotation, you can make any class implement Parcelable in a very simple way.
+
+You just need to add the annotation, and the plugin will do all the hard work:
+
+
+```
+@Parcelize
+class Model(val title: String, val amount: Int) : Parcelable
+```
+
+Then, as you may know, you can add the object to any intent:
+
+```
+val intent = Intent(this, DetailActivity::class.java)
+intent.putExtra(DetailActivity.EXTRA, model)
+startActivity(intent)
+```
+
+And recover the object from the intent at any point (in this case in the target activity):
+
+```
+val model: Model = intent.getParcelableExtra(EXTRA)
+```
 
 # Difference between == and === in kotlin?
