@@ -304,8 +304,10 @@ val model: Model = intent.getParcelableExtra(EXTRA)
 ```
 
 # Difference between == and === in kotlin?
+Link - https://medium.com/@agrawalsuneet/equality-in-kotlin-and-equals-d8373ef529f1
 
-Equality in Kotlin (‘==’, ‘===’ and ‘.equals’)
+## Equality in Kotlin (‘==’, ‘===’ and ‘.equals’)
+
 We often need to compare the data of two variables or objects or the references of two objects in Kotlin. This brings in another question, which equality check should we use in which case.
 
 Let’s figure out what are the types of checks available in Kotlin.
