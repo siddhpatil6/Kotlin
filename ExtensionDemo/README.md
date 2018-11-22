@@ -421,3 +421,111 @@ That’s all for now. You can read my other interesting posts here or you can en
 
 # How much it is reduced size of code when we move from java to kotlin and use data classes?
 - When we used kotlin instead of java, code is reduced by 15-20% and when we use data classes it is reduced by 50-60%.
+
+
+# Companion object in Kotlin
+Unlike Java or C#, Kotlin doesn’t have static members or member functions. Kotlin recommends to simply use package-level functions instead.
+If you need to write a function that can be called without having a class instance but needs access to the internals of a class, you can write it as a member of a companion object declaration inside that class. By declaring a companion object inside our class, you’ll be able to call its members with the same syntax as calling static methods in Java/C#, using only the class name as a qualifier.
+
+How should I declare a companion object inside a class?
+
+Add companion keyword in front of object declaration.
+
+```
+class EventManager {
+
+    companion object FirebaseManager {
+     
+    }  
+}
+```
+
+```
+val firebaseManager = EventManager.FirebaseManager
+```
+
+Optionally, you can even remove the companion object name also. In that case the name Companion will be used.
+```
+class EventManager {
+
+    companion object {
+       
+    }
+}
+val firebaseManager = EventManager.Companion
+```
+
+Let’s take an example of Singleton class where a single instance of the class exists and we get that instance using getInstance static method.
+
+```
+//Java code
+public class EventManager {
+
+    private static EventManager instance;
+
+    private EventManager() {
+
+    }
+
+    public static EventManager getManagerInstance() {
+        if (instance == null) {
+            instance = new EventManager();
+        }
+
+        return instance;
+    }
+
+    public boolean sendEvent(String eventName) {
+        Log.d("Event Sent", eventName);
+        return true;
+    }
+}
+```
+
+Now when we try to implement the same class in the Kotlin, the private static instance and the managerInstance property will be moved to companion object. Rest of the code remains the same.
+
+```
+//Kotlin code
+class EventManager {
+
+    private constructor() {
+    }
+
+    companion object {
+        private lateinit var instance: EventManager
+
+        val managerInstance: EventManager
+            get() {
+                if (instance == null) {
+                    instance = EventManager()
+                }
+
+                return instance
+            }
+    }
+
+    fun sendEvent(eventName: String): Boolean {
+        Log.d("Event Sent", eventName)
+        return true;
+    }
+}
+```
+
+And how I use the sendEvent method?
+
+
+When you name the companion object as FirebaseManager
+val firebaseManager = EventManager.FirebaseManager
+firebaseManager.managerInstance.sendEvent("some event")
+//or
+EventManager.FirebaseManager.managerInstance.sendEvent("Some event")
+2. When you didn’t name the companion object
+
+val firebaseManager = EventManager.Companion
+firebaseManager.managerInstance.sendEvent("some event")
+// or
+EventManager.Companion.managerInstance.sendEvent("Some event")
+
+Please keep in mind, even though the members of companion object look like static members in other languages, at runtime those are still instance members of real objects, and can, for example, implement interfaces.
+
+However, if you use the @JvmStatic annotation, you can have members of companion objects generated as real static methods and fields on the JVM.
