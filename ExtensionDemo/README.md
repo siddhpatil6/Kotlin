@@ -529,3 +529,124 @@ EventManager.Companion.managerInstance.sendEvent("Some event")
 Please keep in mind, even though the members of companion object look like static members in other languages, at runtime those are still instance members of real objects, and can, for example, implement interfaces.
 
 However, if you use the @JvmStatic annotation, you can have members of companion objects generated as real static methods and fields on the JVM.
+
+
+### Data Classes
+
+
+We frequently create classes whose main purpose is to hold data. In such a class some standard functionality and utility functions are often mechanically derivable from the data. In Kotlin, this is called a data class and is marked as data:
+
+```
+	data class User(val name: String, val age: Int)
+```
+instead of
+
+```
+	class User
+	{
+	   String name;
+	   String age;
+	   // and setter getter methods
+	   public void setName()
+	   {
+	   	this.name=name;
+	   }
+	   public void getName()
+
+	}
+```
+The compiler automatically derives the following members from all properties declared in the primary constructor:
+
+equals()/hashCode() pair;
+toString() of the form "User(name=John, age=42)";
+componentN() functions corresponding to the properties in their order of declaration;
+copy() function (see below).
+To ensure consistency and meaningful behavior of the generated code, data classes have to fulfill the following requirements:
+
+The primary constructor needs to have at least one parameter;
+All primary constructor parameters need to be marked as val or var;
+Data classes cannot be abstract, open, sealed or inner;
+(before 1.1) Data classes may only implement interfaces.
+
+
+# What is Parcealize and How to use it?
+
+
+Primitive values in Android can be sent along with the Intent from one Android component to another but Android does not support sending custom data objects(custom data types) via the Intent. This is where Parcelable Interface comes into picture.
+
+Parcelable Interface is used to send data objects from one android component to another. In order to make a data object class Parcelable, the class has to implement Parcelable Interface and override few functions, primarily writeToParcel(Parcel parcel, int flags) and createFromParcel(Parcel in) which leads to writing lots of boilerplate code.
+
+Also once a class is made parcelable, modifying it requires updating the implemented functions as well.
+
+The below code illustrates how to make a simple model class parcelable using Parcelable in Java ( Traditional way ).
+
+```
+public class StudentDataClass implements Parcelable {
+
+    public String studentId;
+    public String studentName;
+
+    public StudentDataClass(String studentId, String studentName) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+    }
+
+    protected StudentDataClass(Parcel in) {
+        studentId = in.readString();
+        studentName = in.readString();
+    }
+    
+    @Overridepublic void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(studentId);
+        dest.writeString(studentName);
+    }
+
+    public static final Creator<StudentDataClass> CREATOR = new Creator<StudentDataClass>() {
+        @Overridepublic StudentDataClass createFromParcel(Parcel in) {
+            return new StudentDataClass(in);
+        }
+
+        @Overridepublic StudentDataClass[] newArray(int size) {
+            return new StudentDataClass[size];
+        }
+    };
+    
+    @Overridepublic int describeContents() {
+        return 0;
+    }
+}
+```
+
+Lots of boilerplate code to transfer a simple object to another activity, right? This is where Kotlin’s @Parcelize reduces the time and effort needed to make a data class Parcelable.
+
+All you need to do is add @Parcelize annotation to the data class to make it Parcelable.
+Since this is still in expermental stage you need to add the following in your module gradle and make sure that you are using latest version of Kotlin(current version is 1.2.41 at the time of writing this article)
+
+```
+androidExtensions {
+    experimental = true
+}
+```
+
+Here is the Parcelable Data Class created by adding @Parcelize in Kotlin
+
+```
+@Parcelize
+data class StudentDataClass( val studentId: String, val studentName : String, ) : Parcelable {}
+```
+
+That’s all. You can send your data object from source activity like this…
+
+```
+val intent: Intent = Intent(this, SecondActivity::class.java)
+intent.putExtra("student_details", StudentDataClass("s1", "Ram"));
+startActivity(intent)
+```
+and receive the data in your destination activity through the Intent like this…
+
+```
+val intent: Intent = getIntent()
+var studentDataClass: StudentDataClass =intent.getParcelableExtra("student_details")
+```
+
+Anything Java can do, Kotlin can do it better in fewer lines.
