@@ -417,3 +417,7 @@ Few things to keep in mind,
 As there is no constructor as String(“”) in Kotlin, all string comparison will give true if the content will be equal.
 There’s no point in optimizing code when comparing to null explicitly. a == null will be automatically translated to a === null as null is a reference and at the end, it will a reference check.
 That’s all for now. You can read my other interesting posts here or you can enjoy my games or apps listed here. Feel free to use my open source Android components in your app listed here. Or drop an email, if you didn’t find what you are looking for and need some help.
+
+
+# How much it is reduced size of code when we move from java to kotlin and use data classes?
+- When we used kotlin instead of java, code is reduced by 15-20% and when we use data classes it is reduced by 50-60%.
