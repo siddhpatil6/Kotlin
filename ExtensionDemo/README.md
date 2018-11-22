@@ -650,3 +650,16 @@ var studentDataClass: StudentDataClass =intent.getParcelableExtra("student_detai
 ```
 
 Anything Java can do, Kotlin can do it better in fewer lines.
+
+# NullPointerException when trying to access views in a Kotlin fragment, when we use extension?
+
+Kotlin synthetic properties are not magic and work in a very simple way. When you access btn_K, it calls for getView().findViewById(R.id.btn_K).
+
+The problem is that you are accessing it too soon. getView() returns null in onCreateView. Try doing it in the onViewCreated method:
+
+```
+All data settings and clicked events write inside onViewCreated
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    btn_K.setOnClickListener { Log.d(TAG, "onViewCreated(): hello world"); }
+}
+```
